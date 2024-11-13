@@ -1,3 +1,3 @@
-## 0.0.1
+## [0.0.1] - 13/11/2024
 
-* TODO: Describe initial release.
+* codenoah paketi için ilk versiyon özellikleri tamamlandı.

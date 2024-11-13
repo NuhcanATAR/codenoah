@@ -26,6 +26,30 @@ class TestView extends StatefulWidget {
 }
 
 class _TestViewState extends State<TestView> {
+  late String pngValue = AppIcons.accountPassword.toPng;
+  late String svgValue = AppIcons.accountPassword.toSvg;
+
+  Future<void> exampleCollection() async {
+    final collectRef =
+        await FirebaseService().cloudFireStore.collection('User').get();
+
+    final authRef =
+        await FirebaseService().authService.createUserWithEmailAndPassword(
+              email: 'hello@gmail.com',
+              password: "123",
+            );
+
+    final userId = FirebaseService().authID;
+  }
+
+  Future<void> hello() async {
+    try {
+      //
+    } catch (e) {
+      throw ServiceException('Hello');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +63,10 @@ class _TestViewState extends State<TestView> {
             width: ViewSizeValueModelExtension(context).maxWidth(context),
             height: ViewSizeValueModelExtension(context)
                 .dynamicHeight(context, 0.2),
-            color: Colors.lightBlue,
+            decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius:
+                    BorderRadius.circular(RadiusExtension.lowRadiusValue)),
           ),
           NormalTextFieldWidget(
             controller: TextEditingController(),
@@ -56,6 +83,52 @@ class _TestViewState extends State<TestView> {
             text: 'text',
             func: () {},
             btnStatus: ButtonTypes.primaryColorButton,
+          ),
+          AppIcons.accountPassword.toPngImg(
+            55,
+            55,
+          ),
+          AppIcons.accountPassword.toSvgImg(
+            Colors.red,
+            55,
+            55,
+          ),
+          TextFormField(
+            validator: (String? value) =>
+                CodeNoahValidator(value: value, context: context)
+                    .emptyNormalCheck,
+          ),
+          CustomEmailFieldWidget(
+            emailController: TextEditingController(),
+            hintText: 'E-mail',
+            onChanged: (val) {},
+            isLabelText: true,
+            width: ViewSizeValueModelExtension(context).maxWidth(context),
+          ),
+          CustomPasswordFieldWidget(
+            passwordController: TextEditingController(),
+            hintText: 'Şifre',
+            onChanged: (val) {},
+            isValidator: true,
+            isLabelText: true,
+            width: ViewSizeValueModelExtension(context).maxWidth(context),
+          ),
+          NormalTextFieldWidget(
+            controller: TextEditingController(),
+            hintText: 'Ad Soyad',
+            explanationStatus: false,
+            onChanged: (val) {},
+            isValidator: true,
+            enabled: true,
+            isLabelText: true,
+            width: ViewSizeValueModelExtension(context).maxWidth(context),
+          ),
+          NumberTextFieldWidget(
+            controller: TextEditingController(),
+            hintText: 'Fiyat',
+            onChanged: (val) {},
+            isLabelText: true,
+            width: ViewSizeValueModelExtension(context).maxWidth(context),
           ),
         ],
       ),
