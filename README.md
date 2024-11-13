@@ -137,9 +137,9 @@ Metin kopyalama için kullanım.
 Hazır İkonları Kullanmak için :  `AppIcons`
 
 ```dart
-late String svgValue = AppIcons.accountPassword.toSvg;
+late String svgValue = AppIcons.callOutline.toSvg;
 // 
-AppIcons.accountPassword.toSvgImg(
+AppIcons.callOutline.toSvgImg(
   Colors.red,
   55,
   55,
