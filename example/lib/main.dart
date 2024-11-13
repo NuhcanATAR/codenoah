@@ -130,6 +130,16 @@ class _TestViewState extends State<TestView> {
             isLabelText: true,
             width: ViewSizeValueModelExtension(context).maxWidth(context),
           ),
+          //
+          Container(
+            width: 55,
+            height: 55,
+            color: ColorExtension.lightGreen,
+          ),
+          SizedBox(
+            width: ViewSizeValueModelExtension(context).maxWidth(context),
+            height: WidthHeightExtension.normalHeight,
+          ),
         ],
       ),
     );

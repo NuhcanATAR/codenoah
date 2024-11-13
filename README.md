@@ -140,11 +140,6 @@ Hazır İkonları Kullanmak için :  `AppIcons`
  late String pngValue = AppIcons.accountPassword.toPng;
   late String svgValue = AppIcons.accountPassword.toSvg;
 // 
-AppIcons.accountPassword.toPngImg(
-  55,
-  55,
-),
-
 AppIcons.accountPassword.toSvgImg(
   Colors.red,
   55,
