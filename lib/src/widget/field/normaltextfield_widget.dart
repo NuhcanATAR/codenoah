@@ -3,7 +3,7 @@
 import 'package:codenoah/codenoah.dart';
 import 'package:flutter/material.dart';
 
-class NormalTextFieldWidget extends StatelessWidget {
+class NormalTextFieldWidget extends StatefulWidget {
   const NormalTextFieldWidget({
     super.key,
     required this.controller,
@@ -13,7 +13,6 @@ class NormalTextFieldWidget extends StatelessWidget {
     required this.isValidator,
     required this.enabled,
     required this.isLabelText,
-    required this.width,
   });
   final TextEditingController controller;
   final String hintText;
@@ -22,62 +21,77 @@ class NormalTextFieldWidget extends StatelessWidget {
   final bool isValidator;
   final bool enabled;
   final bool isLabelText;
-  final double width;
+
+  @override
+  State<NormalTextFieldWidget> createState() => _NormalTextFieldWidgetState();
+}
+
+class _NormalTextFieldWidgetState extends State<NormalTextFieldWidget> {
+  String? errorText;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        isLabelText == true
-            ? SizedBox(
-                width: width,
-                child: Padding(
-                  padding: PaddingSizedsUtility.vertical(
-                    PaddingSizedsUtility.normalPaddingValue,
-                  ),
-                  child: BodyMediumBlackText(
-                    text: hintText,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              )
-            : const SizedBox(),
+        if (widget.isLabelText)
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
+              child: BodyMediumBlackBoldText(
+                text: widget.hintText,
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ),
         Container(
-          margin: MarginSizedsUtility.bottom(
-            MarginSizedsUtility.smallMarginValue,
+          padding: BaseUtility.horizontal(BaseUtility.paddingNormalValue),
+          margin: widget.isLabelText
+              ? BaseUtility.bottom(BaseUtility.marginNormalValue)
+              : BaseUtility.bottom(BaseUtility.paddingSmallValue),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              BaseUtility.radiusCircularMediumValue,
+            ),
+            border: Border.all(
+              color: Colors.grey,
+              width: 1,
+            ),
           ),
           child: TextFormField(
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: Theme.of(context).colorScheme.scrim,
-                  fontFamily: 'Popins',
+                  fontFamily: 'Popins Light',
                   fontWeight: FontWeight.bold,
                 ),
-            controller: controller,
-            validator: isValidator == true
-                ? (String? value) =>
-                    CodeNoahValidator(value: value, context: context)
-                        .emptyNormalCheck
-                : null,
-            onChanged: onChanged,
-            keyboardType: TextInputType.text,
-            maxLines: explanationStatus == true ? 4 : null,
-            enabled: enabled,
+            controller: widget.controller,
+            validator: (String? value) {
+              final result =
+                  CodeNoahValidator(value: value, context: context).emailCheck;
+              setState(() {
+                errorText = result;
+              });
+              return result;
+            },
+            onChanged: widget.onChanged,
+            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-              hintText: isLabelText == true ? '' : hintText,
+              errorStyle: const TextStyle(
+                fontSize: 0.2,
+              ),
+              hintText: widget.hintText,
               hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onSurface,
-                    fontFamily: 'Popins Light',
-                    fontWeight: FontWeight.w500,
                   ),
               filled: true,
               fillColor: Colors.transparent,
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: PaddingSizedsUtility.normalPaddingValue,
-                vertical: PaddingSizedsUtility.smallPaddingValue,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: BaseUtility.paddingNormalValue,
+                vertical: BaseUtility.paddingSmallValue,
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -86,7 +100,7 @@ class NormalTextFieldWidget extends StatelessWidget {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -94,7 +108,7 @@ class NormalTextFieldWidget extends StatelessWidget {
               ),
               focusedErrorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -102,7 +116,7 @@ class NormalTextFieldWidget extends StatelessWidget {
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -111,75 +125,117 @@ class NormalTextFieldWidget extends StatelessWidget {
             ),
           ),
         ),
+        // validator error
+        if (errorText != null)
+          Padding(
+            padding: BaseUtility.all(BaseUtility.paddingMediumValue),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.warning_rounded,
+                  color: Theme.of(context).colorScheme.error,
+                  size: BaseUtility.iconNormalSize,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: BaseUtility.left(BaseUtility.paddingNormalValue),
+                    child: BodyMediumRedText(
+                      text: errorText!,
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
       ],
     );
   }
 }
 
-class NumberTextFieldWidget extends StatelessWidget {
+class NumberTextFieldWidget extends StatefulWidget {
   const NumberTextFieldWidget({
     super.key,
     required this.controller,
     required this.hintText,
     required this.onChanged,
     required this.isLabelText,
-    required this.width,
   });
   final TextEditingController controller;
   final String hintText;
   final void Function(String)? onChanged;
   final bool isLabelText;
-  final double width;
+
+  @override
+  State<NumberTextFieldWidget> createState() => _NumberTextFieldWidgetState();
+}
+
+class _NumberTextFieldWidgetState extends State<NumberTextFieldWidget> {
+  String? errorText;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        isLabelText == true
-            ? SizedBox(
-                width: width,
-                child: Padding(
-                  padding: PaddingSizedsUtility.vertical(
-                    PaddingSizedsUtility.normalPaddingValue,
-                  ),
-                  child: BodyMediumBlackText(
-                    text: hintText,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              )
-            : const SizedBox(),
+        if (widget.isLabelText)
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
+              child: BodyMediumBlackBoldText(
+                text: widget.hintText,
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ),
         Container(
-          margin: MarginSizedsUtility.bottom(
-            MarginSizedsUtility.smallMarginValue,
+          padding: BaseUtility.horizontal(BaseUtility.paddingNormalValue),
+          margin: widget.isLabelText
+              ? BaseUtility.bottom(BaseUtility.marginNormalValue)
+              : BaseUtility.bottom(BaseUtility.paddingSmallValue),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              BaseUtility.radiusCircularMediumValue,
+            ),
+            border: Border.all(
+              color: Colors.grey,
+              width: 1,
+            ),
           ),
           child: TextFormField(
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: Theme.of(context).colorScheme.scrim,
-                  fontFamily: 'Nunito Regular',
+                  fontFamily: 'Popins Light',
+                  fontWeight: FontWeight.bold,
                 ),
-            onChanged: onChanged,
-            controller: controller,
-            validator: (String? value) =>
-                CodeNoahValidator(value: value, context: context)
-                    .emptyNumberCheck,
-            keyboardType: TextInputType.number,
+            controller: widget.controller,
+            validator: (String? value) {
+              final result = CodeNoahValidator(value: value, context: context)
+                  .emptyNumberCheck;
+              setState(() {
+                errorText = result;
+              });
+              return result;
+            },
+            onChanged: widget.onChanged,
+            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-              hintText: isLabelText == true ? '' : hintText,
+              errorStyle: const TextStyle(
+                fontSize: 0.2,
+              ),
+              hintText: widget.hintText,
               hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onSurface,
-                    fontFamily: 'Popins Light',
-                    fontWeight: FontWeight.w500,
                   ),
               filled: true,
               fillColor: Colors.transparent,
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: PaddingSizedsUtility.normalPaddingValue,
-                vertical: PaddingSizedsUtility.smallPaddingValue,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: BaseUtility.paddingNormalValue,
+                vertical: BaseUtility.paddingSmallValue,
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -188,7 +244,7 @@ class NumberTextFieldWidget extends StatelessWidget {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -196,7 +252,7 @@ class NumberTextFieldWidget extends StatelessWidget {
               ),
               focusedErrorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -204,7 +260,7 @@ class NumberTextFieldWidget extends StatelessWidget {
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -213,6 +269,29 @@ class NumberTextFieldWidget extends StatelessWidget {
             ),
           ),
         ),
+        // validator error
+        if (errorText != null)
+          Padding(
+            padding: BaseUtility.all(BaseUtility.paddingMediumValue),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.warning_rounded,
+                  color: Theme.of(context).colorScheme.error,
+                  size: BaseUtility.iconNormalSize,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: BaseUtility.left(BaseUtility.paddingNormalValue),
+                    child: BodyMediumRedText(
+                      text: errorText!,
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
       ],
     );
   }
