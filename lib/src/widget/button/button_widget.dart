@@ -9,14 +9,15 @@ class CustomButtonWidget extends StatelessWidget {
     required this.text,
     required this.func,
     required this.btnStatus,
+    this.btnIcon,
   });
 
   final double? width;
   final double? height;
-
   final String text;
   final Function()? func;
   final ButtonTypes btnStatus;
+  final IconData? btnIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -94,11 +95,17 @@ class CustomButtonWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          const Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: BaseUtility.iconNormalSize,
-                          ),
+                          btnIcon == null
+                              ? const Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: BaseUtility.iconNormalSize,
+                                )
+                              : Icon(
+                                  btnIcon,
+                                  color: Colors.white,
+                                  size: BaseUtility.iconNormalSize,
+                                ),
                           Expanded(
                             child: BodyMediumWhiteText(
                               text: text,

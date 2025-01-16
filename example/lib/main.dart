@@ -62,7 +62,8 @@ class _TestViewState extends State<TestView> {
               func: () {
                 if (formKey.currentState!.validate()) {}
               },
-              btnStatus: ButtonTypes.primaryColorButton,
+              btnStatus: ButtonTypes.iconPrimaryColorButton,
+              btnIcon: Icons.access_alarm,
             ),
           ],
         ),
