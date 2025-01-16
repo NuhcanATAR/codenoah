@@ -21,8 +21,8 @@ class CustomButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: PaddingSizedsUtility.top(
-        PaddingSizedsUtility.normalPaddingValue,
+      padding: BaseUtility.top(
+        BaseUtility.paddingNormalValue,
       ),
       child: GestureDetector(
         onTap: func,
@@ -34,8 +34,8 @@ class CustomButtonWidget extends StatelessWidget {
                 0.06,
               ),
           child: Container(
-            padding: PaddingSizedsUtility.horizontal(
-              PaddingSizedsUtility.normalPaddingValue,
+            padding: BaseUtility.horizontal(
+              BaseUtility.paddingNormalValue,
             ),
             alignment: Alignment.center,
             decoration: btnStatus.buttonTypeValue ==
@@ -94,10 +94,10 @@ class CustomButtonWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          AppIcons.add.toSvgImg(
-                            Colors.white,
-                            IconSizedExtension.normalSize,
-                            IconSizedExtension.normalSize,
+                          const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: BaseUtility.iconNormalSize,
                           ),
                           Expanded(
                             child: BodyMediumWhiteText(

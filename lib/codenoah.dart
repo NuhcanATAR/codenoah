@@ -1,6 +1,5 @@
 library codenoah;
 
-export 'src/constant/icon.dart';
 export 'src/database/firebase.dart';
 export 'src/exception/exception.dart';
 export 'src/extension/color_extension.dart';

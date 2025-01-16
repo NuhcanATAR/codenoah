@@ -8,10 +8,8 @@ class CustomEmailFieldWidget extends StatefulWidget {
     required this.hintText,
     required this.onChanged,
     required this.isLabelText,
-    required this.width,
   });
 
-  final double width;
   final TextEditingController emailController;
   final String hintText;
   final Function(String)? onChanged;
@@ -23,34 +21,37 @@ class CustomEmailFieldWidget extends StatefulWidget {
 
 class _CustomEmailFieldWidgetState extends State<CustomEmailFieldWidget> {
   String? errorText;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         // email field
-        widget.isLabelText == true
-            ? SizedBox(
-                width: widget.width,
-                child: Padding(
-                  padding: PaddingSizedsUtility.vertical(
-                    PaddingSizedsUtility.normalPaddingValue,
-                  ),
-                  child: BodyMediumBlackText(
-                    text: widget.hintText,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              )
-            : const SizedBox(),
+        if (widget.isLabelText)
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
+              child: BodyMediumBlackBoldText(
+                text: widget.hintText,
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ),
         Container(
-          margin: widget.isLabelText == true
-              ? EdgeInsets.only(
-                  left: MarginSizedsUtility.normalMarginValue,
-                  bottom: MarginSizedsUtility.smallMarginValue,
-                )
-              : PaddingSizedsUtility.bottom(
-                  PaddingSizedsUtility.smallPaddingValue,
-                ),
+          padding: BaseUtility.horizontal(BaseUtility.paddingNormalValue),
+          margin: widget.isLabelText
+              ? const EdgeInsets.only(bottom: BaseUtility.marginNormalValue)
+              : BaseUtility.bottom(BaseUtility.paddingSmallValue),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              BaseUtility.radiusCircularMediumValue,
+            ),
+            border: Border.all(
+              color: Colors.grey,
+              width: 1,
+            ),
+          ),
           child: TextFormField(
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: Theme.of(context).colorScheme.scrim,
@@ -58,29 +59,38 @@ class _CustomEmailFieldWidgetState extends State<CustomEmailFieldWidget> {
                   fontWeight: FontWeight.bold,
                 ),
             controller: widget.emailController,
-            validator: (String? value) =>
-                CodeNoahValidator(value: value, context: context).emailCheck,
+            validator: (String? value) {
+              final result =
+                  CodeNoahValidator(value: value, context: context).emailCheck;
+              setState(() {
+                errorText = result;
+              });
+              return result;
+            },
             onChanged: widget.onChanged,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
+              errorStyle: const TextStyle(
+                fontSize: 0.2,
+              ),
               hintText: widget.hintText,
               hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
-              icon: AppIcons.mailFill.toSvgImg(
-                Colors.black,
-                IconSizedExtension.normalSize,
-                IconSizedExtension.normalSize,
+              icon: const Icon(
+                Icons.mail_outline_rounded,
+                color: Colors.black,
+                size: BaseUtility.iconNormalSize,
               ),
               filled: true,
               fillColor: Colors.transparent,
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: PaddingSizedsUtility.normalPaddingValue,
-                vertical: PaddingSizedsUtility.smallPaddingValue,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: BaseUtility.paddingNormalValue,
+                vertical: BaseUtility.paddingSmallValue,
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -89,7 +99,7 @@ class _CustomEmailFieldWidgetState extends State<CustomEmailFieldWidget> {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -97,7 +107,7 @@ class _CustomEmailFieldWidgetState extends State<CustomEmailFieldWidget> {
               ),
               focusedErrorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -105,7 +115,7 @@ class _CustomEmailFieldWidgetState extends State<CustomEmailFieldWidget> {
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
-                  RadiusExtension.circularMediumValue,
+                  BaseUtility.radiusCircularMediumValue,
                 ),
                 borderSide: const BorderSide(
                   color: Colors.transparent,
@@ -118,21 +128,17 @@ class _CustomEmailFieldWidgetState extends State<CustomEmailFieldWidget> {
         // validator error
         if (errorText != null)
           Padding(
-            padding: PaddingSizedsUtility.vertical(
-              PaddingSizedsUtility.mediumPaddingValue,
-            ),
+            padding: BaseUtility.all(BaseUtility.paddingMediumValue),
             child: Row(
               children: [
-                AppIcons.warningCircle.toSvgImg(
-                  Theme.of(context).colorScheme.error,
-                  IconSizedExtension.smallSize,
-                  IconSizedExtension.smallSize,
+                Icon(
+                  Icons.warning_rounded,
+                  color: Theme.of(context).colorScheme.error,
+                  size: BaseUtility.iconNormalSize,
                 ),
                 Expanded(
                   child: Padding(
-                    padding: PaddingSizedsUtility.left(
-                      PaddingSizedsUtility.smallPaddingValue,
-                    ),
+                    padding: BaseUtility.left(BaseUtility.paddingNormalValue),
                     child: BodyMediumRedText(
                       text: errorText!,
                       textAlign: TextAlign.left,

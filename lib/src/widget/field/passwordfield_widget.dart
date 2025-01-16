@@ -35,8 +35,8 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
             ? SizedBox(
                 width: widget.width,
                 child: Padding(
-                  padding: PaddingSizedsUtility.vertical(
-                    PaddingSizedsUtility.normalPaddingValue,
+                  padding: BaseUtility.vertical(
+                    BaseUtility.paddingNormalValue,
                   ),
                   child: BodyMediumBlackText(
                     text: widget.hintText,
@@ -47,12 +47,12 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
             : const SizedBox(),
         Container(
           margin: widget.isLabelText == true
-              ? EdgeInsets.only(
-                  left: MarginSizedsUtility.normalMarginValue,
-                  bottom: MarginSizedsUtility.smallMarginValue,
+              ? const EdgeInsets.only(
+                  left: BaseUtility.marginNormalValue,
+                  bottom: BaseUtility.marginSmallValue,
                 )
-              : MarginSizedsUtility.bottom(
-                  MarginSizedsUtility.smallMarginValue,
+              : BaseUtility.bottom(
+                  BaseUtility.marginSmallValue,
                 ),
           child: TextFormField(
             obscureText: isPassObscured,
@@ -87,27 +87,27 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
                   });
                 },
                 icon: isPassObscured == true
-                    ? AppIcons.eyeOutline.toSvgImg(
-                        Colors.black,
-                        IconSizedExtension.normalSize,
-                        IconSizedExtension.normalSize,
+                    ? const Icon(
+                        Icons.lock_outline_rounded,
+                        color: Colors.black,
+                        size: BaseUtility.iconNormalSize,
                       )
-                    : AppIcons.eyeCloseOutline.toSvgImg(
-                        Colors.black,
-                        IconSizedExtension.normalSize,
-                        IconSizedExtension.normalSize,
+                    : const Icon(
+                        Icons.lock_open_rounded,
+                        color: Colors.black,
+                        size: BaseUtility.iconNormalSize,
                       ),
               ),
-              icon: AppIcons.lockFill.toSvgImg(
-                Colors.black,
-                IconSizedExtension.normalSize,
-                IconSizedExtension.normalSize,
+              icon: const Icon(
+                Icons.lock,
+                color: Colors.black,
+                size: BaseUtility.iconNormalSize,
               ),
               filled: true,
               fillColor: Colors.transparent,
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: PaddingSizedsUtility.normalPaddingValue,
-                vertical: PaddingSizedsUtility.smallPaddingValue,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: BaseUtility.paddingNormalValue,
+                vertical: BaseUtility.paddingSmallValue,
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(
@@ -147,20 +147,20 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
         // validator error
         if (errorText != null)
           Padding(
-            padding: PaddingSizedsUtility.vertical(
-              PaddingSizedsUtility.mediumPaddingValue,
+            padding: BaseUtility.vertical(
+              BaseUtility.paddingMediumValue,
             ),
             child: Row(
               children: [
-                AppIcons.warningCircle.toSvgImg(
-                  Theme.of(context).colorScheme.error,
-                  IconSizedExtension.smallSize,
-                  IconSizedExtension.smallSize,
+                Icon(
+                  Icons.warning_rounded,
+                  color: Theme.of(context).colorScheme.error,
+                  size: BaseUtility.iconNormalSize,
                 ),
                 Expanded(
                   child: Padding(
-                    padding: PaddingSizedsUtility.left(
-                      PaddingSizedsUtility.smallPaddingValue,
+                    padding: BaseUtility.left(
+                      BaseUtility.paddingSmallValue,
                     ),
                     child: BodyMediumRedText(
                       text: errorText!,
