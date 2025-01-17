@@ -49,11 +49,15 @@ class _TestViewState extends State<TestView> {
         child: Column(
           children: <Widget>[
             // e-mail
-            CustomEmailFieldWidget(
-              emailController: controller,
+            NormalTextFieldWidget(
+              controller: controller,
               hintText: 'E-mail',
               onChanged: (val) {},
               isLabelText: true,
+              languageOptions: LanguageOptions.english,
+              explanationStatus: false,
+              isValidator: true,
+              enabled: true,
             ),
 
             CustomButtonWidget(

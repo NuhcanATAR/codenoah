@@ -13,15 +13,22 @@
 // GitHub: https://github.com/NuhcanATAR
 // E-mail: nuhcanatar20@gmail.com
 // -----------------------------------
-// Description: color palettes extension.
+// Description: language selection feature for form validator.
 // For more information, visit the repository or contact the publisher.
 // -----------------------------------
 
-import 'package:flutter/material.dart';
+enum LanguageOptions {
+  turkish,
+  english,
+}
 
-extension ColorExtension on Color {
-  static Color white = const Color(0xffFFFFFF);
-  static Color black = const Color(0xff1C1B1B);
-  static Color lightGreen = const Color(0xFF00AF66);
-  static Color lightRed = const Color(0xFFf5484a);
+extension LangueOptionsExtension on LanguageOptions {
+  int get languageValue {
+    switch (this) {
+      case LanguageOptions.turkish:
+        return 1;
+      case LanguageOptions.english:
+        return 2;
+    }
+  }
 }

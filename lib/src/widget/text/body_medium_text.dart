@@ -1,3 +1,22 @@
+// CODENOAH
+// -----------------------------------
+//   ####    #####   #####    #######  ##   ##   #####     ###     ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ###  ##  ### ###   ## ##    ##  ##
+// ##       ##   ##   ##  ##   ##      #### ##  ##   ##  ##   ##   ##  ##
+// ##       ##   ##   ##  ##   ####    #######  ##   ##  ##   ##   ######
+// ##       ##   ##   ##  ##   ##      ## ####  ##   ##  #######   ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ##  ###  ### ###  ##   ##   ##  ##
+//   ####    #####   #####    #######  ##   ##   #####   ##   ##   ##  ##
+// -----------------------------------
+// Publisher: Nuhcan ATAR
+// LinkedIn: https://www.linkedin.com/in/nuhcan-atar-371276208/
+// GitHub: https://github.com/NuhcanATAR
+// E-mail: nuhcanatar20@gmail.com
+// -----------------------------------
+// Description: pre-made post widget with ready-made styles.
+// For more information, visit the repository or contact the publisher.
+// -----------------------------------
+
 import 'package:flutter/material.dart';
 
 class BodyMediumBlackBoldText extends StatelessWidget {
@@ -17,7 +36,7 @@ class BodyMediumBlackBoldText extends StatelessWidget {
       textAlign: textAlign,
       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
             fontWeight: FontWeight.bold,
-            fontFamily: 'Nunito Bold',
+            fontFamily: 'Popins Light',
           ),
     );
   }
@@ -60,7 +79,7 @@ class BodyMediumWhiteBoldText extends StatelessWidget {
       textAlign: textAlign,
       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
             fontWeight: FontWeight.bold,
-            fontFamily: 'Nunito Bold',
+            fontFamily: 'Popins Light',
             color: Colors.white,
           ),
     );

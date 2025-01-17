@@ -1,3 +1,22 @@
+// CODENOAH
+// -----------------------------------
+//   ####    #####   #####    #######  ##   ##   #####     ###     ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ###  ##  ### ###   ## ##    ##  ##
+// ##       ##   ##   ##  ##   ##      #### ##  ##   ##  ##   ##   ##  ##
+// ##       ##   ##   ##  ##   ####    #######  ##   ##  ##   ##   ######
+// ##       ##   ##   ##  ##   ##      ## ####  ##   ##  #######   ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ##  ###  ### ###  ##   ##   ##  ##
+//   ####    #####   #####    #######  ##   ##   #####   ##   ##   ##  ##
+// -----------------------------------
+// Publisher: Nuhcan ATAR
+// LinkedIn: https://www.linkedin.com/in/nuhcan-atar-371276208/
+// GitHub: https://github.com/NuhcanATAR
+// E-mail: nuhcanatar20@gmail.com
+// -----------------------------------
+// Description: A button widget with features such as customizable error, main color, bold color, icon button.
+// For more information, visit the repository or contact the publisher.
+// -----------------------------------
+
 import 'package:codenoah/codenoah.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +31,16 @@ class CustomButtonWidget extends StatelessWidget {
     this.btnIcon,
   });
 
+  // width and height adjustment
   final double? width;
   final double? height;
+  // button text
   final String text;
+  // click function
   final Function()? func;
+  // button status
   final ButtonTypes btnStatus;
+  // icon widget in case of button selection with icon
   final IconData? btnIcon;
 
   @override

@@ -1,3 +1,22 @@
+// CODENOAH
+// -----------------------------------
+//   ####    #####   #####    #######  ##   ##   #####     ###     ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ###  ##  ### ###   ## ##    ##  ##
+// ##       ##   ##   ##  ##   ##      #### ##  ##   ##  ##   ##   ##  ##
+// ##       ##   ##   ##  ##   ####    #######  ##   ##  ##   ##   ######
+// ##       ##   ##   ##  ##   ##      ## ####  ##   ##  #######   ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ##  ###  ### ###  ##   ##   ##  ##
+//   ####    #####   #####    #######  ##   ##   #####   ##   ##   ##  ##
+// -----------------------------------
+// Publisher: Nuhcan ATAR
+// LinkedIn: https://www.linkedin.com/in/nuhcan-atar-371276208/
+// GitHub: https://github.com/NuhcanATAR
+// E-mail: nuhcanatar20@gmail.com
+// -----------------------------------
+// Description: max width and height can be given and flexibly adjustable width and height extension.
+// For more information, visit the repository or contact the publisher.
+// -----------------------------------
+
 import 'package:flutter/material.dart';
 
 extension ViewSizeModelExtension on BuildContext {

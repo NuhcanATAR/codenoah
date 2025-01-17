@@ -13,56 +13,52 @@
 // GitHub: https://github.com/NuhcanATAR
 // E-mail: nuhcanatar20@gmail.com
 // -----------------------------------
-// Description: Customizable password text form field widget.
+// Description: Customizable number text form field widget.
 // For more information, visit the repository or contact the publisher.
 // -----------------------------------
 
-import 'package:codenoah/codenoah.dart';
+import 'package:codenoah/src/helper/langue_options.dart';
+import 'package:codenoah/src/util/util.dart';
+import 'package:codenoah/src/validator/validator.dart';
+import 'package:codenoah/src/widget/text/body_medium_text.dart';
 import 'package:flutter/material.dart';
 
-class CustomPasswordFieldWidget extends StatefulWidget {
-  const CustomPasswordFieldWidget({
+class NumberTextFieldWidget extends StatefulWidget {
+  const NumberTextFieldWidget({
     super.key,
-    required this.passwordController,
+    required this.controller,
     required this.hintText,
     required this.onChanged,
-    required this.isValidator,
     required this.isLabelText,
-    required this.width,
     required this.languageOptions,
   });
 
   // controller
-  final TextEditingController passwordController;
-  // text to be entered into field
+  final TextEditingController controller;
+  // text entry into field
   final String hintText;
   // function in case of click
-  final Function(String)? onChanged;
-  // verification check
-  final bool isValidator;
-  // Post for the top part of the field
+  final void Function(String)? onChanged;
+  // label text for the top part of the field
   final bool isLabelText;
-  // width for label text
-  final double width;
   // language selection for error printing
   final LanguageOptions languageOptions;
 
   @override
-  State<CustomPasswordFieldWidget> createState() =>
-      _CustomPasswordFieldWidgetState();
+  State<NumberTextFieldWidget> createState() => _NumberTextFieldWidgetState();
 }
 
-class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
+class _NumberTextFieldWidgetState extends State<NumberTextFieldWidget> {
   String? errorText;
-  late bool isPassObscured = true;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         // label text
-        buildLabelTextWidget,
-        // password field
-        buildPasswordFieldWidget,
+        if (widget.isLabelText) buildLabelTextWidget,
+        // number field
+        buildNumberFieldWidget,
         // validator error
         if (errorText != null) buildValidatorErrorWidget,
       ],
@@ -70,23 +66,19 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
   }
 
   // label text
-  Widget get buildLabelTextWidget => widget.isLabelText == true
-      ? SizedBox(
-          width: widget.width,
-          child: Padding(
-            padding: BaseUtility.vertical(
-              BaseUtility.paddingNormalValue,
-            ),
-            child: BodyMediumBlackText(
-              text: widget.hintText,
-              textAlign: TextAlign.left,
-            ),
+  Widget get buildLabelTextWidget => SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
+          child: BodyMediumBlackBoldText(
+            text: widget.hintText,
+            textAlign: TextAlign.left,
           ),
-        )
-      : const SizedBox();
+        ),
+      );
 
-  // password field
-  Widget get buildPasswordFieldWidget => Container(
+  // number field
+  Widget get buildNumberFieldWidget => Container(
         padding: BaseUtility.horizontal(BaseUtility.paddingNormalValue),
         margin: widget.isLabelText
             ? BaseUtility.bottom(BaseUtility.marginNormalValue)
@@ -101,36 +93,25 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
           ),
         ),
         child: TextFormField(
-          obscureText: isPassObscured,
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: Theme.of(context).colorScheme.scrim,
+                fontFamily: 'Popins Light',
                 fontWeight: FontWeight.bold,
               ),
-          controller: widget.passwordController,
-          keyboardType: TextInputType.visiblePassword,
-          validator: widget.isValidator == true
-              ? (String? value) {
-                  final result = CodeNoahValidator(
-                    value: value,
-                    context: context,
-                    languageOptions: widget.languageOptions,
-                  ).passwordCheck;
-                  setState(() {
-                    errorText = result;
-                  });
-                  return result;
-                }
-              : (String? value) => CodeNoahValidator(
-                    value: value,
-                    context: context,
-                    languageOptions: widget.languageOptions,
-                  ).emptyNormalCheck,
+          controller: widget.controller,
+          validator: (String? value) {
+            final result = CodeNoahValidator(
+              value: value,
+              context: context,
+              languageOptions: widget.languageOptions,
+            ).emptyNumberCheck;
+            setState(() {
+              errorText = result;
+            });
+            return result;
+          },
           onChanged: widget.onChanged,
-          // onChanged: (value) {
-          //   setState(() {
-          //     errorText = CustomValidator(value: value).passwordCheck;
-          //   });
-          // },
+          keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             errorStyle: const TextStyle(
               fontSize: 0.2,
@@ -139,29 +120,6 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
             hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: Theme.of(context).colorScheme.onSurface,
                 ),
-            suffixIcon: IconButton(
-              onPressed: () {
-                setState(() {
-                  isPassObscured = !isPassObscured;
-                });
-              },
-              icon: isPassObscured == true
-                  ? const Icon(
-                      Icons.lock_outline_rounded,
-                      color: Colors.black54,
-                      size: BaseUtility.iconNormalSize,
-                    )
-                  : const Icon(
-                      Icons.lock_open_rounded,
-                      color: Colors.black54,
-                      size: BaseUtility.iconNormalSize,
-                    ),
-            ),
-            icon: const Icon(
-              Icons.lock,
-              color: Colors.black54,
-              size: BaseUtility.iconNormalSize,
-            ),
             filled: true,
             fillColor: Colors.transparent,
             contentPadding: const EdgeInsets.symmetric(
@@ -170,15 +128,16 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(
-                RadiusExtension.circularMediumValue,
+                BaseUtility.radiusCircularMediumValue,
               ),
               borderSide: const BorderSide(
                 color: Colors.transparent,
+                width: 1,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(
-                RadiusExtension.circularMediumValue,
+                BaseUtility.radiusCircularMediumValue,
               ),
               borderSide: const BorderSide(
                 color: Colors.transparent,
@@ -186,7 +145,7 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(
-                RadiusExtension.circularMediumValue,
+                BaseUtility.radiusCircularMediumValue,
               ),
               borderSide: const BorderSide(
                 color: Colors.transparent,
@@ -194,7 +153,7 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(
-                RadiusExtension.circularMediumValue,
+                BaseUtility.radiusCircularMediumValue,
               ),
               borderSide: const BorderSide(
                 color: Colors.transparent,
@@ -206,21 +165,17 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
 
   // validator error
   Widget get buildValidatorErrorWidget => Padding(
-        padding: BaseUtility.vertical(
-          BaseUtility.paddingMediumValue,
-        ),
+        padding: BaseUtility.all(BaseUtility.paddingMediumValue),
         child: Row(
           children: [
             Icon(
               Icons.warning_rounded,
               color: Theme.of(context).colorScheme.error,
-              size: BaseUtility.iconMediumSize,
+              size: BaseUtility.iconNormalSize,
             ),
             Expanded(
               child: Padding(
-                padding: BaseUtility.left(
-                  BaseUtility.paddingSmallValue,
-                ),
+                padding: BaseUtility.left(BaseUtility.paddingNormalValue),
                 child: BodyMediumRedText(
                   text: errorText!,
                   textAlign: TextAlign.left,
