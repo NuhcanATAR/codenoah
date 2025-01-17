@@ -2,6 +2,7 @@ import 'package:example/view/button_example/button_view.dart';
 import 'package:example/view/field_example/field_view.dart';
 import 'package:example/view/firebase_example/firebase_view.dart';
 import 'package:example/view/form_example/form_view.dart';
+import 'package:example/view/image_example/image_view.dart';
 import 'package:example/view/response_example/response_view.dart';
 import 'package:example/view/text_example/text_view.dart';
 import 'package:flutter/material.dart';
@@ -124,7 +125,10 @@ class _TestViewState extends State<TestView> {
               CustomButtonWidget(
                 width: ViewSizeValueModelExtension(context).maxWidth(context),
                 text: 'Image Example',
-                func: () {},
+                func: () => CodeNoahNavigatorRouter.push(
+                  context,
+                  const ImageView(),
+                ),
                 btnStatus: ButtonTypes.primaryColorButton,
               ),
               // copy example
