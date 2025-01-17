@@ -1,3 +1,4 @@
+import 'package:example/view/button_example/button_view.dart';
 import 'package:example/view/field_example/field_view.dart';
 import 'package:example/view/form_example/form_view.dart';
 import 'package:example/view/response_example/response_view.dart';
@@ -91,7 +92,10 @@ class _TestViewState extends State<TestView> {
               CustomButtonWidget(
                 width: ViewSizeValueModelExtension(context).maxWidth(context),
                 text: 'Button Example',
-                func: () {},
+                func: () => CodeNoahNavigatorRouter.push(
+                  context,
+                  const ButtonView(),
+                ),
                 btnStatus: ButtonTypes.primaryColorButton,
               ),
               // text example
