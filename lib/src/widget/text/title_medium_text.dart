@@ -24,12 +24,10 @@ class TitleMediumBlackBoldText extends StatelessWidget {
     super.key,
     required this.text,
     required this.textAlign,
-    required this.colorScheme,
   });
 
   final String text;
   final TextAlign textAlign;
-  final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +47,10 @@ class TitleMediumWhiteBoldText extends StatelessWidget {
     super.key,
     required this.text,
     required this.textAlign,
-    required this.colorScheme,
   });
 
   final String text;
   final TextAlign textAlign;
-  final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
@@ -75,12 +71,10 @@ class TitleMediumBlackText extends StatelessWidget {
     super.key,
     required this.text,
     required this.textAlign,
-    required this.colorScheme,
   });
 
   final String text;
   final TextAlign textAlign;
-  final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
@@ -99,12 +93,10 @@ class TitleMediumWhiteText extends StatelessWidget {
     super.key,
     required this.text,
     required this.textAlign,
-    required this.colorScheme,
   });
 
   final String text;
   final TextAlign textAlign;
-  final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
