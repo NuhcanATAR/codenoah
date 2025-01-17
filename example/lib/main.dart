@@ -1,5 +1,6 @@
 import 'package:example/view/field_example/field_view.dart';
 import 'package:example/view/form_example/form_view.dart';
+import 'package:example/view/response_example/response_view.dart';
 import 'package:flutter/material.dart';
 import 'package:codenoah/codenoah.dart';
 
@@ -80,7 +81,10 @@ class _TestViewState extends State<TestView> {
               CustomButtonWidget(
                 width: ViewSizeValueModelExtension(context).maxWidth(context),
                 text: 'Response Example',
-                func: () {},
+                func: () => CodeNoahNavigatorRouter.push(
+                  context,
+                  const ResponseView(),
+                ),
                 btnStatus: ButtonTypes.primaryColorButton,
               ),
               // button example
