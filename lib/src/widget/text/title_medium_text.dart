@@ -1,3 +1,22 @@
+// CODENOAH
+// -----------------------------------
+//   ####    #####   #####    #######  ##   ##   #####     ###     ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ###  ##  ### ###   ## ##    ##  ##
+// ##       ##   ##   ##  ##   ##      #### ##  ##   ##  ##   ##   ##  ##
+// ##       ##   ##   ##  ##   ####    #######  ##   ##  ##   ##   ######
+// ##       ##   ##   ##  ##   ##      ## ####  ##   ##  #######   ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ##  ###  ### ###  ##   ##   ##  ##
+//   ####    #####   #####    #######  ##   ##   #####   ##   ##   ##  ##
+// -----------------------------------
+// Publisher: Nuhcan ATAR
+// LinkedIn: https://www.linkedin.com/in/nuhcan-atar-371276208/
+// GitHub: https://github.com/NuhcanATAR
+// E-mail: nuhcanatar20@gmail.com
+// -----------------------------------
+// Description: pre-made post widget with ready-made styles.
+// For more information, visit the repository or contact the publisher.
+// -----------------------------------
+
 import 'package:flutter/material.dart';
 
 class TitleMediumBlackBoldText extends StatelessWidget {
@@ -5,12 +24,10 @@ class TitleMediumBlackBoldText extends StatelessWidget {
     super.key,
     required this.text,
     required this.textAlign,
-    required this.colorScheme,
   });
 
   final String text;
   final TextAlign textAlign;
-  final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +36,7 @@ class TitleMediumBlackBoldText extends StatelessWidget {
       textAlign: textAlign,
       style: Theme.of(context).textTheme.titleMedium!.copyWith(
             fontWeight: FontWeight.bold,
-            fontFamily: 'Nunito Bold',
+            fontFamily: 'Popins Light',
           ),
     );
   }
@@ -30,12 +47,10 @@ class TitleMediumWhiteBoldText extends StatelessWidget {
     super.key,
     required this.text,
     required this.textAlign,
-    required this.colorScheme,
   });
 
   final String text;
   final TextAlign textAlign;
-  final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +59,7 @@ class TitleMediumWhiteBoldText extends StatelessWidget {
       textAlign: textAlign,
       style: Theme.of(context).textTheme.titleMedium!.copyWith(
             fontWeight: FontWeight.bold,
-            fontFamily: 'Nunito Bold',
+            fontFamily: 'Popins Light',
             color: Colors.white,
           ),
     );
@@ -56,12 +71,10 @@ class TitleMediumBlackText extends StatelessWidget {
     super.key,
     required this.text,
     required this.textAlign,
-    required this.colorScheme,
   });
 
   final String text;
   final TextAlign textAlign;
-  final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
@@ -80,12 +93,10 @@ class TitleMediumWhiteText extends StatelessWidget {
     super.key,
     required this.text,
     required this.textAlign,
-    required this.colorScheme,
   });
 
   final String text;
   final TextAlign textAlign;
-  final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +106,7 @@ class TitleMediumWhiteText extends StatelessWidget {
       style: Theme.of(context)
           .textTheme
           .titleMedium!
-          .copyWith(fontFamily: 'Nunito Bold', color: Colors.white),
+          .copyWith(fontFamily: 'Popins Light', color: Colors.white),
     );
   }
 }
@@ -118,7 +129,7 @@ class TitleHeaderWhiteText extends StatelessWidget {
       style: Theme.of(context)
           .textTheme
           .titleLarge!
-          .copyWith(fontFamily: 'Nunito Bold', color: Colors.white),
+          .copyWith(fontFamily: 'Popins Light', color: Colors.white),
     );
   }
 }
@@ -139,7 +150,7 @@ class TitleMediumMainColorText extends StatelessWidget {
       text,
       textAlign: textAlign,
       style: Theme.of(context).textTheme.titleMedium!.copyWith(
-            fontFamily: 'Nunito Bold',
+            fontFamily: 'Popins Light',
             color: Theme.of(context).colorScheme.primary,
           ),
     );
