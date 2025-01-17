@@ -109,7 +109,7 @@ class _NormalTextFieldWidgetState extends State<NormalTextFieldWidget> {
               value: value,
               context: context,
               languageOptions: widget.languageOptions,
-            ).emailCheck;
+            ).emptyNormalCheck;
             setState(() {
               errorText = result;
             });

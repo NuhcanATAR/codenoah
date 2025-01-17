@@ -119,7 +119,7 @@ class _CustomEmailFieldWidgetState extends State<CustomEmailFieldWidget> {
                 ),
             icon: const Icon(
               Icons.mail_outline_rounded,
-              color: Colors.black,
+              color: Colors.black54,
               size: BaseUtility.iconNormalSize,
             ),
             filled: true,

@@ -57,6 +57,8 @@ export 'src/widget/field/normal_text_field_widget.dart';
 export 'src/widget/field/number_text_field.dart';
 // password text form field properties
 export 'src/widget/field/password_field_widget.dart';
+// phone number form field properties
+export 'src/widget/field/phone_number_field.dart';
 // image properties
 export 'src/widget/image/image.dart';
 // error or blank screen properties
