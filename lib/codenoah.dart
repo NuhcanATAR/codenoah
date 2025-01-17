@@ -26,13 +26,13 @@ export 'src/exception/exception.dart';
 // color characteristics
 export 'src/extension/color_extension.dart';
 // icon sizing features
-export 'src/extension/iconsized_extension.dart';
+export 'src/extension/icon_sized_extension.dart';
 // anti-aliasing features
 export 'src/extension/radius_extension.dart';
 // screen sizing features
 export 'src/extension/view_extension.dart';
 // width and height specifications
-export 'src/extension/widthheight_extension.dart';
+export 'src/extension/width_height_extension.dart';
 // button control features
 export 'src/helper/button_control.dart';
 // copy features
@@ -50,13 +50,13 @@ export 'src/validator/validator.dart';
 // button features
 export 'src/widget/button/button_widget.dart';
 // email text form field properties
-export 'src/widget/field/emailfield_widget.dart';
+export 'src/widget/field/email_field_widget.dart';
 // normal text form field properties
-export 'src/widget/field/normaltextfield_widget.dart';
+export 'src/widget/field/normal_text_field_widget.dart';
 // number text field
 export 'src/widget/field/number_text_field.dart';
 // password text form field properties
-export 'src/widget/field/passwordfield_widget.dart';
+export 'src/widget/field/password_field_widget.dart';
 // image properties
 export 'src/widget/image/image.dart';
 // error or blank screen properties
