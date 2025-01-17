@@ -2,7 +2,7 @@
 
 * codenoah paketi için ilk versiyon özellikleri tamamlandı.
 
-## [2.0.0] - 17.01.2025
+## [3.0.0] - 17.01.2025
 
 * Textformfield validator errors have been fixed.
 * Added phone number field for textformfield.
