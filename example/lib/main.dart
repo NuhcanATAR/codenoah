@@ -1,5 +1,6 @@
 import 'package:example/view/button_example/button_view.dart';
 import 'package:example/view/copy_example/copy_view.dart';
+import 'package:example/view/dialog_example/dialog_view.dart';
 import 'package:example/view/field_example/field_view.dart';
 import 'package:example/view/firebase_example/firebase_view.dart';
 import 'package:example/view/form_example/form_view.dart';
@@ -157,7 +158,10 @@ class _TestViewState extends State<TestView> {
               CustomButtonWidget(
                 width: ViewSizeValueModelExtension(context).maxWidth(context),
                 text: 'Dialog Example',
-                func: () {},
+                func: () => CodeNoahNavigatorRouter.push(
+                  context,
+                  const DialogView(),
+                ),
                 btnStatus: ButtonTypes.primaryColorButton,
               ),
             ],

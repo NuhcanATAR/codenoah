@@ -18,7 +18,7 @@
 // -----------------------------------
 
 import 'package:another_flushbar/flushbar.dart';
-import 'package:codenoah/src/extension/color_extension.dart';
+import 'package:codenoah/codenoah.dart';
 import 'package:flutter/material.dart';
 
 enum SnackType {
@@ -119,8 +119,15 @@ class CodeNoahDialogs {
       builder: (context) => AlertDialog(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: CircularProgressIndicator(
-          color: ColorExtension.white,
+        title: Padding(
+          padding: BaseUtility.bottom(
+            BaseUtility.paddingMediumValue,
+          ),
+          child: Center(
+            child: CircularProgressIndicator(
+              color: ColorExtension.white,
+            ),
+          ),
         ),
         content: child,
       ),
