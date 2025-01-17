@@ -4,13 +4,11 @@
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License: MIT"></a>   
 <a href="https://medium.com/@nuhcanatar20"> <img src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" alt="Medium: nuhcanatar20">  </a> 
  
-
-
 </p>
 
 # codenoah
 
-Codenoah paketi, Flutter ile uygulama geliştirirken ihtiyacınız olan bir dizi tasarım bileşeni ve kullanışlı genişletme (extension) sunan kapsamlı bir yardımcı pakettir. Codenoah, özellikle tasarım ve kullanıcı deneyimi geliştirmeye yönelik çeşitli araçlar ve widget’lar içerir. Bu paket ile Flutter projelerinizi daha hızlı ve etkili bir şekilde geliştirebilir, kod tekrarı ve yapılandırma sürecini en aza indirebilirsiniz.
+The Codenoah package is a comprehensive utility package that provides a set of design components and useful extensions you need when developing applications with Flutter. Codenoah includes a variety of tools and widgets specifically geared towards design and user experience improvement. With this package you can develop your Flutter projects faster and more efficiently, minimizing code repetition and configuration.
 
 
 ## View Size extension
@@ -26,13 +24,13 @@ Codenoah paketi, Flutter ile uygulama geliştirirken ihtiyacınız olan bir dizi
 
 ### BorderRadius
 
-Kenar Yumuşatma için kullanılacak extension
+Extension to be used for Edge Softening
 
 `RadiusExtension // extension`
 
 <details open> 
 
-<summary>Kullanım:</summary> 
+<summary>Usage:</summary> 
 
 - `RadiusExtension.lowRadiusValue` //  20.0
 - `RadiusExtension.normalRadiusValue` // 12.0
@@ -45,20 +43,51 @@ Kenar Yumuşatma için kullanılacak extension
 </details>
 
 
-### Kopyalama
+### Copying
 
-Metin kopyalama için kullanım.
+Use for copying text.
 
 ```dart
  onTap: (){
-   CodeNoahClipboard.controlC('Merhaba');
+  CodeNoahClipboard.controlC('CodeNoah Package').then((val) {
+      if (!mounted) return;
+      CodeNoahDialogs(context).showFlush(
+        type: SnackType.success,
+        message: 'Copied successfully',
+      );
+    }).catchError((val) {
+      if (!mounted) return;
+      CodeNoahDialogs(context).showFlush(
+        type: SnackType.error,
+        message: 'Failed to copy',
+      );
+    });
 }
 ```
 
-### Yönlendirme
+### Paste
+
+Use for text pasting.
 
 ```dart
-// Normal Yöneldirme
+ onTap: () async{
+   final String? pastedText = await CodeNoahClipboard.controlV();
+    if (pastedText != null) {
+      if (kDebugMode) {
+        print('Pasted text: $pastedText');
+      }
+    } else {
+      if (kDebugMode) {
+        print('Clipboard is empty or contains invalid data.');
+      }
+    }
+}
+```
+
+### Routing
+
+```dart
+// Normal Routing
 () {
   CodeNoahNavigatorRouter.push(
     context,
@@ -66,7 +95,7 @@ Metin kopyalama için kullanım.
   );
 },
 
-// Normal Pozisyonlu Ekran Yönlendirme
+// Screen Routing with Normal Position
 () {
   CodeNoahNavigatorRouter.push(
     context,
@@ -75,7 +104,7 @@ Metin kopyalama için kullanım.
   );
 },
 
-// Geri Dönüş Olmadan Normal Pozisyonlu Ekran Yönlendirme
+// Screen Routing with Normal Position without Reversal
 () {
   CodeNoahNavigatorRouter.pushAndRemoveUntil(
     context,
@@ -83,7 +112,7 @@ Metin kopyalama için kullanım.
   );
 },
 
-// Geri Dönüş Olmadan Normal Pozisyonlu Ekran Yöneldirme
+// Screen Routing with Normal Position without Reversal
 () {
   CodeNoahNavigatorRouter.pushAndRemoveUntil(
     context,
@@ -95,7 +124,7 @@ Metin kopyalama için kullanım.
 <details>
 
   
-<summary> SlideDirection Özellikleri: </summary>
+<summary> SlideDirection Features: </summary>
 
 - `SlideDirection.leftToRight`
 - `SlideDirection.rightToLeft`
@@ -106,10 +135,10 @@ Metin kopyalama için kullanım.
 
 ### Padding
 
-İç boşluk kullanımları için:  `PaddingSizedsUtility`
+For interior space uses:  `PaddingSizedsUtility`
 
 <details>
-<summary> Kullanım: </summary>
+<summary>Usage: </summary>
  
 - `PaddingSizedsUtility.hugePaddingValue` // 125.0
 - `PaddingSizedsUtility.hightPaddingValue` // 55.0
@@ -120,10 +149,10 @@ Metin kopyalama için kullanım.
 
 ### Margin
 
-İç boşluk kullanımları için:  `MarginSizedsUtility`
+For external cavity uses:  `MarginSizedsUtility`
 
 <details>
-<summary> Kullanım: </summary>
+<summary>Usage: </summary>
  
 - `MarginSizedsUtility.hugeMarginValue` // 125.0
 - `MarginSizedsUtility.hightMarginValue` // 55.0
@@ -132,21 +161,7 @@ Metin kopyalama için kullanım.
 - `MarginSizedsUtility.smallMarginValue` // 5.0
 </details>
 
-### İkon
-
-Hazır İkonları Kullanmak için :  `AppIcons`
-
-```dart
-late String svgValue = AppIcons.callOutline.toSvg;
-// 
-AppIcons.callOutline.toSvgImg(
-  Colors.red,
-  55,
-  55,
-),
-```
-
-### Firebase Servisi
+### Firebase Service
 
 Firebase Servisi Kullanımları :  `FirebaseService`
 
@@ -170,7 +185,7 @@ Firebase Servisi Kullanımları :  `FirebaseService`
 
 ### Exception
 
-Exception Kullanımı için :  `ServiceException`
+For Exception Usage :  `ServiceException`
 
 ```dart
  
@@ -184,9 +199,9 @@ Future<void> hello() async {
 ```
 
 
-### Validator Kullanımı
+### Validator Usage
 
-Field Validator Doğrulama için :  `CodeNoahValidator`
+Field Validator For Validation :  `CodeNoahValidator`
 
 ```dart
 TextFormField(
@@ -196,7 +211,7 @@ TextFormField(
 ```
 
 <details>
-<summary> Kullanım: </summary>
+<summary>Usage: </summary>
  
 - `CodeNoahValidator(value: value, context: context).emptyNormalCheck` 
 - `CodeNoahValidator(value: value, context: context).emptyNumberCheck` 
@@ -206,8 +221,7 @@ TextFormField(
 </details>
 
 
-### Özelleştirilmiş Buton Kullanımı
-
+### Customized Button Usage
 ```dart
 CustomButtonWidget(
   width: ViewSizeValueModelExtension(context).maxWidth(context),
@@ -218,7 +232,7 @@ CustomButtonWidget(
 ```
 
 <details>
-<summary> ButtonTypes Kullanım: </summary>
+<summary>ButtonTypes Usage: </summary>
  
 - `ButtonTypes.primaryColorButton` 
 - `ButtonTypes.iconPrimaryColorButton` 
@@ -226,59 +240,140 @@ CustomButtonWidget(
 - `ButtonTypes.borderErrorColorButton` 
 </details>
 
-### Email Field Kullanımı
+### Email Field Usage
 
 ```dart
 CustomEmailFieldWidget(
-  emailController: TextEditingController(), // controller
-  hintText: 'E-mail', //  field adı
-  onChanged: (val) {}, // onChanged
-  isLabelText: true, // field içinde veya üstünde gösterme 
-  width: ViewSizeValueModelExtension(context).maxWidth(context), // field genişliği
-),
+   emailController: emailEditingController, // controller
+   hintText: 'E-mail Field', // hint text
+   onChanged: (val) {}, // in case of clicks
+   isLabelText: true, // header label 
+   languageOptions: LanguageOptions.english, // language preference for validator errors
+ ),
 ```
 
-### Şifre Field Kullanımı
+### Password Field Usage
 
 ```dart
 CustomPasswordFieldWidget(
-  passwordController: TextEditingController(), // conroller
-  hintText: 'Şifre', // field adı
-  onChanged: (val) {}, // onChanged
-  isValidator: true, // doğrulma durumu
-  isLabelText: true, // field içinde veya üstünde gösterme
-  width: ViewSizeValueModelExtension(context).maxWidth(context), // field genişliği
+  passwordController: passwordEditingController, // controller
+  hintText: 'Password Field', // hint text
+  onChanged: (val) {}, // in case of clicks
+  isValidator: true, // validator error status
+  isLabelText: true, // header label
+  width: ViewSizeValueModelExtension(context).maxWidth(context), // label text width
+  languageOptions: LanguageOptions.english, // language preference for validator errors
 ),
 ```
 
-### Normal Yazı Field
+### Normal Text Field
 
 ```dart
 NormalTextFieldWidget(
-  controller: TextEditingController(), // controller
-  hintText: 'Ad Soyad', // field adı
-  explanationStatus: false, // açıklama field olma durumu 
-  onChanged: (val) {}, // onChanged
-  isValidator: true, // doğrulama durumu
-  enabled: true, // field aktif olma durumu
-  isLabelText: true, // field içinde veya üstünde gösterme
-  width: ViewSizeValueModelExtension(context).maxWidth(context), // field genişliği
+  controller: normalEditingController, // controller
+  hintText: 'Normal Text Field', // hint text
+  explanationStatus: false, // explanation field status
+  onChanged: (val) {}, // in case of clicks
+  isValidator: true, // validator error status
+  enabled: true, // field enabled active status
+  isLabelText: true, // header text
+  languageOptions: LanguageOptions.english, // language prefrence for validator errors
 ),
 ```
 
-### Numara Field
+### Number Field
 
 ```dart
 NumberTextFieldWidget(
-  controller: TextEditingController(), // controller
-  hintText: 'Fiyat', // field adı
-  onChanged: (val) {}, // onChanged  
-  isLabelText: true, // field içinde veya üstünde gösterme
-  width: ViewSizeValueModelExtension(context).maxWidth(context), // field genişliği
+  controller: numberEditingController, // controller
+  hintText: 'Number Field', // hint text
+  onChanged: (val) {}, // in case of clicks
+  isLabelText: true, // header text
+  languageOptions: LanguageOptions.english, // language prefrence for validator errors
 ),
 ```
 
-### Renk Extension
+### Phone Number Field 
+
+```dart
+PhoneNumberFieldWidget(
+  phoneNumberController: phoneNumberEditingController, // controller
+  hintText: 'Phone Number Field', // hint text
+  onChanged: (val) {}, // in case of clicks
+  isLabelText: true, // header text
+  width: ViewSizeValueModelExtension(context).maxWidth(context), // label text width
+  languageOptions: LanguageOptions.english, // language preference for validator errors
+),
+```
+
+### Show Flush Usage
+
+```dart
+void showFlush() {
+  CodeNoahDialogs(context).showFlush(
+    type: SnackType.success,
+    message: 'Test Show Flush Message',
+  );
+}
+```
+
+### Modal Bottom Usage
+
+```dart
+void modalBottom() {
+  CodeNoahDialogs(context).showModalBottom(
+    SizedBox(
+      width: ViewSizeValueModelExtension(context).maxWidth(context),
+      height: ViewSizeValueModelExtension(context).dynamicHeight(
+        context,
+        0.2,
+      ),
+      child: const Center(
+        child: TitleLargeBlackBoldText(
+          text: 'text',
+          textAlign: TextAlign.center,
+        ),
+      ),
+    ),
+    backgroundColor: Colors.white,
+  );
+}
+```
+
+### Loading Dialog Usage
+
+```dart
+void loadingDialog() {
+  CodeNoahDialogs(context).showAlert(
+    const BodyMediumWhiteText(
+      text: 'Loading...',
+      textAlign: TextAlign.center,
+    ),
+  );
+}
+```
+
+### Asset Image Usage
+
+```dart
+CodeNoahImageAsset(
+  toImg: 'assets/images/exampleimg.png',
+  width: 122,
+  height: 122,
+),
+```
+
+### SVG Image Usage
+
+```dart
+CodeNoahImageSvg(
+  toImg: 'assets/images/example.svg',
+  width: 122,
+  height: 122,
+),
+```
+
+### Color Extension
 
 ```dart
 Container(
@@ -288,7 +383,7 @@ Container(
 ),
 ```
 
-### Genişlik ve Yükseklik Extension
+### Width and Height Extension
 
 ```dart
 SizedBox(
@@ -297,7 +392,7 @@ SizedBox(
 ),
 ```
 <details>
-<summary> Kullanım: </summary>
+<summary>Usage: </summary>
  
 - `WidthHeightExtension.normalHeight`  // 0.10
 - `WidthHeightExtension.standartHeight`  // 0.06
@@ -309,7 +404,7 @@ SizedBox(
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-2024 created for @NuhcanATAR
+2025 created for @NuhcanATAR
 
 <br><br>
 

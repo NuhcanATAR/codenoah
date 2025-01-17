@@ -20,8 +20,8 @@
 import 'package:codenoah/codenoah.dart';
 import 'package:flutter/material.dart';
 
-class PhoneNumberFieldWidget extends StatefulWidget {
-  const PhoneNumberFieldWidget({
+class CustomPhoneNumberFieldWidget extends StatefulWidget {
+  const CustomPhoneNumberFieldWidget({
     super.key,
     required this.phoneNumberController,
     required this.hintText,
@@ -39,10 +39,12 @@ class PhoneNumberFieldWidget extends StatefulWidget {
   final LanguageOptions? languageOptions;
 
   @override
-  State<PhoneNumberFieldWidget> createState() => _PhoneNumberFieldWidgetState();
+  State<CustomPhoneNumberFieldWidget> createState() =>
+      _CustomPhoneNumberFieldWidgetState();
 }
 
-class _PhoneNumberFieldWidgetState extends State<PhoneNumberFieldWidget> {
+class _CustomPhoneNumberFieldWidgetState
+    extends State<CustomPhoneNumberFieldWidget> {
   String? errorText;
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class _PhoneNumberFieldWidgetState extends State<PhoneNumberFieldWidget> {
         // label text
         if (widget.isLabelText) buildLabelTextWidget,
         // phone number field
-        buildPhoneNumberFieldWidget,
+        buildCustomPhoneNumberFieldWidget,
         // validator error
         if (errorText != null) buildValidatorErrorWidget,
       ],
@@ -71,7 +73,7 @@ class _PhoneNumberFieldWidgetState extends State<PhoneNumberFieldWidget> {
       );
 
   // phone number field
-  Widget get buildPhoneNumberFieldWidget => Container(
+  Widget get buildCustomPhoneNumberFieldWidget => Container(
         margin: BaseUtility.bottom(
           BaseUtility.paddingSmallValue,
         ),

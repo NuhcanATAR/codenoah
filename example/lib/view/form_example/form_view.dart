@@ -36,7 +36,7 @@ class _FormViewState extends FormViewModel {
                       padding: BaseUtility.right(
                         BaseUtility.paddingMediumValue,
                       ),
-                      child: NormalTextFieldWidget(
+                      child: CustomNormalTextFieldWidget(
                         controller: nameController,
                         hintText: 'Name',
                         explanationStatus: false,
@@ -56,7 +56,7 @@ class _FormViewState extends FormViewModel {
                       padding: BaseUtility.left(
                         BaseUtility.paddingMediumValue,
                       ),
-                      child: NormalTextFieldWidget(
+                      child: CustomNormalTextFieldWidget(
                         controller: surnameController,
                         hintText: 'Surname',
                         explanationStatus: false,
@@ -79,7 +79,7 @@ class _FormViewState extends FormViewModel {
                 languageOptions: LanguageOptions.english,
               ),
               // phone number
-              PhoneNumberFieldWidget(
+              CustomPhoneNumberFieldWidget(
                 phoneNumberController: phoneNumberController,
                 hintText: 'Phone Number',
                 onChanged: (val) {},

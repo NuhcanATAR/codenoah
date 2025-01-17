@@ -20,8 +20,8 @@
 import 'package:codenoah/codenoah.dart';
 import 'package:flutter/material.dart';
 
-class NormalTextFieldWidget extends StatefulWidget {
-  const NormalTextFieldWidget({
+class CustomNormalTextFieldWidget extends StatefulWidget {
+  const CustomNormalTextFieldWidget({
     super.key,
     required this.controller,
     required this.hintText,
@@ -51,10 +51,12 @@ class NormalTextFieldWidget extends StatefulWidget {
   final LanguageOptions? languageOptions;
 
   @override
-  State<NormalTextFieldWidget> createState() => _NormalTextFieldWidgetState();
+  State<CustomNormalTextFieldWidget> createState() =>
+      _CustomNormalTextFieldWidgetState();
 }
 
-class _NormalTextFieldWidgetState extends State<NormalTextFieldWidget> {
+class _CustomNormalTextFieldWidgetState
+    extends State<CustomNormalTextFieldWidget> {
   String? errorText;
 
   @override

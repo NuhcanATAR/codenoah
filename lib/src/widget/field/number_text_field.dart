@@ -23,8 +23,8 @@ import 'package:codenoah/src/validator/validator.dart';
 import 'package:codenoah/src/widget/text/body_medium_text.dart';
 import 'package:flutter/material.dart';
 
-class NumberTextFieldWidget extends StatefulWidget {
-  const NumberTextFieldWidget({
+class CustomNumberTextFieldWidget extends StatefulWidget {
+  const CustomNumberTextFieldWidget({
     super.key,
     required this.controller,
     required this.hintText,
@@ -45,10 +45,12 @@ class NumberTextFieldWidget extends StatefulWidget {
   final LanguageOptions? languageOptions;
 
   @override
-  State<NumberTextFieldWidget> createState() => _NumberTextFieldWidgetState();
+  State<CustomNumberTextFieldWidget> createState() =>
+      _CustomNumberTextFieldWidgetState();
 }
 
-class _NumberTextFieldWidgetState extends State<NumberTextFieldWidget> {
+class _CustomNumberTextFieldWidgetState
+    extends State<CustomNumberTextFieldWidget> {
   String? errorText;
 
   @override

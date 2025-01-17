@@ -24,7 +24,7 @@ class _FieldViewState extends FieldViewModel {
           shrinkWrap: true,
           children: <Widget>[
             // normal field
-            NormalTextFieldWidget(
+            CustomNormalTextFieldWidget(
               controller: normalEditingController,
               hintText: 'Normal Text Field',
               explanationStatus: false,
@@ -35,7 +35,7 @@ class _FieldViewState extends FieldViewModel {
               languageOptions: LanguageOptions.english,
             ),
             // number field
-            NumberTextFieldWidget(
+            CustomNumberTextFieldWidget(
               controller: numberEditingController,
               hintText: 'Number Field',
               onChanged: (val) {},
@@ -43,7 +43,7 @@ class _FieldViewState extends FieldViewModel {
               languageOptions: LanguageOptions.english,
             ),
             // phone number field
-            PhoneNumberFieldWidget(
+            CustomPhoneNumberFieldWidget(
               phoneNumberController: phoneNumberEditingController,
               hintText: 'Phone Number Field',
               onChanged: (val) {},
