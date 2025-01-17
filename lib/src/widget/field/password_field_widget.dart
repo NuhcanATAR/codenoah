@@ -29,7 +29,7 @@ class CustomPasswordFieldWidget extends StatefulWidget {
     required this.isValidator,
     required this.isLabelText,
     required this.width,
-    required this.languageOptions,
+    this.languageOptions,
   });
 
   // controller
@@ -45,7 +45,7 @@ class CustomPasswordFieldWidget extends StatefulWidget {
   // width for label text
   final double width;
   // language selection for error printing
-  final LanguageOptions languageOptions;
+  final LanguageOptions? languageOptions;
 
   @override
   State<CustomPasswordFieldWidget> createState() =>
@@ -113,7 +113,8 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
                   final result = CodeNoahValidator(
                     value: value,
                     context: context,
-                    languageOptions: widget.languageOptions,
+                    languageOptions:
+                        widget.languageOptions ?? LanguageOptions.english,
                   ).passwordCheck;
                   setState(() {
                     errorText = result;
@@ -123,7 +124,8 @@ class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
               : (String? value) => CodeNoahValidator(
                     value: value,
                     context: context,
-                    languageOptions: widget.languageOptions,
+                    languageOptions:
+                        widget.languageOptions ?? LanguageOptions.english,
                   ).emptyNormalCheck,
           onChanged: widget.onChanged,
           // onChanged: (value) {

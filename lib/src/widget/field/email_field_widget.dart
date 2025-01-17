@@ -27,7 +27,7 @@ class CustomEmailFieldWidget extends StatefulWidget {
     required this.hintText,
     required this.onChanged,
     required this.isLabelText,
-    required this.languageOptions,
+    this.languageOptions,
   });
 
   // controller
@@ -39,7 +39,7 @@ class CustomEmailFieldWidget extends StatefulWidget {
   // text at the top of the field
   final bool isLabelText;
   // language selection for error printing
-  final LanguageOptions languageOptions;
+  final LanguageOptions? languageOptions;
 
   @override
   State<CustomEmailFieldWidget> createState() => _CustomEmailFieldWidgetState();
@@ -100,7 +100,8 @@ class _CustomEmailFieldWidgetState extends State<CustomEmailFieldWidget> {
             final result = CodeNoahValidator(
               value: value,
               context: context,
-              languageOptions: widget.languageOptions,
+              languageOptions:
+                  widget.languageOptions ?? LanguageOptions.english,
             ).emailCheck;
             setState(() {
               errorText = result;

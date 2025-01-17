@@ -30,7 +30,7 @@ class NormalTextFieldWidget extends StatefulWidget {
     required this.isValidator,
     required this.enabled,
     required this.isLabelText,
-    required this.languageOptions,
+    this.languageOptions,
   });
 
   // controller
@@ -48,7 +48,7 @@ class NormalTextFieldWidget extends StatefulWidget {
   // text at the top of the field
   final bool isLabelText;
   // language selection for error printing
-  final LanguageOptions languageOptions;
+  final LanguageOptions? languageOptions;
 
   @override
   State<NormalTextFieldWidget> createState() => _NormalTextFieldWidgetState();
@@ -108,7 +108,8 @@ class _NormalTextFieldWidgetState extends State<NormalTextFieldWidget> {
             final result = CodeNoahValidator(
               value: value,
               context: context,
-              languageOptions: widget.languageOptions,
+              languageOptions:
+                  widget.languageOptions ?? LanguageOptions.english,
             ).emptyNormalCheck;
             setState(() {
               errorText = result;

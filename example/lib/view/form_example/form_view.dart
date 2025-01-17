@@ -14,7 +14,7 @@ class _FormViewState extends FormViewModel {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Form View"),
+        title: const Text("Form Example"),
       ),
       body: Form(
         key: formKey,

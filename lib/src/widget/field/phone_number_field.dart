@@ -28,7 +28,7 @@ class PhoneNumberFieldWidget extends StatefulWidget {
     required this.onChanged,
     required this.isLabelText,
     required this.width,
-    required this.languageOptions,
+    this.languageOptions,
   });
 
   final TextEditingController phoneNumberController;
@@ -36,7 +36,7 @@ class PhoneNumberFieldWidget extends StatefulWidget {
   final void Function(String)? onChanged;
   final bool isLabelText;
   final double width;
-  final LanguageOptions languageOptions;
+  final LanguageOptions? languageOptions;
 
   @override
   State<PhoneNumberFieldWidget> createState() => _PhoneNumberFieldWidgetState();
@@ -95,7 +95,8 @@ class _PhoneNumberFieldWidgetState extends State<PhoneNumberFieldWidget> {
             final result = CodeNoahValidator(
               value: value,
               context: context,
-              languageOptions: widget.languageOptions,
+              languageOptions:
+                  widget.languageOptions ?? LanguageOptions.english,
             ).phoneNumberValidator(value);
             setState(() {
               errorText = result;

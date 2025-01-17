@@ -30,7 +30,7 @@ class NumberTextFieldWidget extends StatefulWidget {
     required this.hintText,
     required this.onChanged,
     required this.isLabelText,
-    required this.languageOptions,
+    this.languageOptions,
   });
 
   // controller
@@ -42,7 +42,7 @@ class NumberTextFieldWidget extends StatefulWidget {
   // label text for the top part of the field
   final bool isLabelText;
   // language selection for error printing
-  final LanguageOptions languageOptions;
+  final LanguageOptions? languageOptions;
 
   @override
   State<NumberTextFieldWidget> createState() => _NumberTextFieldWidgetState();
@@ -103,7 +103,8 @@ class _NumberTextFieldWidgetState extends State<NumberTextFieldWidget> {
             final result = CodeNoahValidator(
               value: value,
               context: context,
-              languageOptions: widget.languageOptions,
+              languageOptions:
+                  widget.languageOptions ?? LanguageOptions.english,
             ).emptyNumberCheck;
             setState(() {
               errorText = result;
