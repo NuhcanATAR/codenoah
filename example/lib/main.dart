@@ -5,6 +5,7 @@ import 'package:example/view/firebase_example/firebase_view.dart';
 import 'package:example/view/form_example/form_view.dart';
 import 'package:example/view/image_example/image_view.dart';
 import 'package:example/view/response_example/response_view.dart';
+import 'package:example/view/router_example/router_view.dart';
 import 'package:example/view/text_example/text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:codenoah/codenoah.dart';
@@ -146,7 +147,10 @@ class _TestViewState extends State<TestView> {
               CustomButtonWidget(
                 width: ViewSizeValueModelExtension(context).maxWidth(context),
                 text: 'Router Example',
-                func: () {},
+                func: () => CodeNoahNavigatorRouter.push(
+                  context,
+                  const RouterView(),
+                ),
                 btnStatus: ButtonTypes.primaryColorButton,
               ),
               // show dialog example
