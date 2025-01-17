@@ -52,10 +52,20 @@ class CodeNoahClipboard {
     }
   }
 
-  // Retrieves data from the clipboard.
-  static Future<dynamic> controlV() async {
-    final ClipboardData? data =
-        await Clipboard.getData('text/plain'); // Get data from the clipboard.
-    return data; // Return data.
+  // retrieves data from the clipboard.
+  static Future<String?> controlV() async {
+    try {
+      final ClipboardData? data =
+          await Clipboard.getData('text/plain'); // get data from clipboard.
+      if (data != null && data.text != null && data.text!.isNotEmpty) {
+        return data.text; // return the pasted text.
+      } else {
+        return null; // return null if clipboard is empty or data is invalid.
+      }
+    } catch (e) {
+      throw ServiceException(
+        'Failed to paste data from clipboard: $e',
+      ); // handle errors.
+    }
   }
 }
