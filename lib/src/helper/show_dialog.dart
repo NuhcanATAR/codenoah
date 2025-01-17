@@ -1,14 +1,37 @@
+// CODENOAH
+// -----------------------------------
+//   ####    #####   #####    #######  ##   ##   #####     ###     ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ###  ##  ### ###   ## ##    ##  ##
+// ##       ##   ##   ##  ##   ##      #### ##  ##   ##  ##   ##   ##  ##
+// ##       ##   ##   ##  ##   ####    #######  ##   ##  ##   ##   ######
+// ##       ##   ##   ##  ##   ##      ## ####  ##   ##  #######   ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ##  ###  ### ###  ##   ##   ##  ##
+//   ####    #####   #####    #######  ##   ##   #####   ##   ##   ##  ##
+// -----------------------------------
+// Publisher: Nuhcan ATAR
+// LinkedIn: https://www.linkedin.com/in/nuhcan-atar-371276208/
+// GitHub: https://github.com/NuhcanATAR
+// E-mail: nuhcanatar20@gmail.com
+// -----------------------------------
+// Description: feature that can be supported with alert dialogs within the application.
+// For more information, visit the repository or contact the publisher.
+// -----------------------------------
+
 import 'package:another_flushbar/flushbar.dart';
-import 'package:codenoah/src/extension/color_extension.dart';
+import 'package:codenoah/codenoah.dart';
 import 'package:flutter/material.dart';
 
 enum SnackType {
+  // dialogue colors
   success(Color(0xff328048), "Başarılı", Icons.check_circle),
   warning(Color(0xffFD9D42), "Uyarı", Icons.warning_rounded),
   error(Color(0xffB42318), "Hatalı", Icons.error);
 
+  // dialogue color
   final Color color;
+  // dialogue message
   final String message;
+  // dialogue icon
   final IconData icon;
   const SnackType(this.color, this.message, this.icon);
 }
@@ -25,6 +48,7 @@ class CodeNoahDialogs {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  // Checks if Flushbar is shown and acts accordingly.
   Future<void> _onFlushPressed(Flushbar? flushbar, bool showing) async {
     if (showing) {
       await flushbar?.dismiss(true);
@@ -34,6 +58,7 @@ class CodeNoahDialogs {
     }
   }
 
+  // very customizable warning dialog that pops up from the bottom.
   Future<void> showFlush({String? message, required SnackType type}) async {
     Flushbar? flushbar;
     bool showing = false;
@@ -73,6 +98,7 @@ class CodeNoahDialogs {
     await flushbar.show(context);
   }
 
+  // drop-down modal dialog that can be inserted later
   void showModalBottom(
     Widget child, {
     Color? backgroundColor,
@@ -86,14 +112,22 @@ class CodeNoahDialogs {
     );
   }
 
+  // a dialog for the loading screen
   Future<T?> showAlert<T extends Object?>(Widget child) {
     return showDialog<T>(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: CircularProgressIndicator(
-          color: ColorExtension.white,
+        title: Padding(
+          padding: BaseUtility.bottom(
+            BaseUtility.paddingMediumValue,
+          ),
+          child: Center(
+            child: CircularProgressIndicator(
+              color: ColorExtension.white,
+            ),
+          ),
         ),
         content: child,
       ),

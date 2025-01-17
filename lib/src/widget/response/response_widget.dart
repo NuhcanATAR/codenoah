@@ -1,3 +1,22 @@
+// CODENOAH
+// -----------------------------------
+//   ####    #####   #####    #######  ##   ##   #####     ###     ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ###  ##  ### ###   ## ##    ##  ##
+// ##       ##   ##   ##  ##   ##      #### ##  ##   ##  ##   ##   ##  ##
+// ##       ##   ##   ##  ##   ####    #######  ##   ##  ##   ##   ######
+// ##       ##   ##   ##  ##   ##      ## ####  ##   ##  #######   ##  ##
+//  ##  ##  ### ###   ## ##    ##   #  ##  ###  ### ###  ##   ##   ##  ##
+//   ####    #####   #####    #######  ##   ##   #####   ##   ##   ##  ##
+// -----------------------------------
+// Publisher: Nuhcan ATAR
+// LinkedIn: https://www.linkedin.com/in/nuhcan-atar-371276208/
+// GitHub: https://github.com/NuhcanATAR
+// E-mail: nuhcanatar20@gmail.com
+// -----------------------------------
+// Description: Widget to quickly display empty, error or loading status.
+// For more information, visit the repository or contact the publisher.
+// -----------------------------------
+
 import 'package:codenoah/codenoah.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +34,8 @@ class CustomResponseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: PaddingSizedsUtility.all(
-        PaddingSizedsUtility.normalPaddingValue,
+      padding: BaseUtility.all(
+        BaseUtility.paddingNormalValue,
       ),
       child: Center(
         child: SingleChildScrollView(
@@ -28,8 +47,8 @@ class CustomResponseWidget extends StatelessWidget {
               img,
               // title
               Padding(
-                padding: PaddingSizedsUtility.top(
-                  PaddingSizedsUtility.hightPaddingValue,
+                padding: BaseUtility.top(
+                  BaseUtility.paddingHightValue,
                 ),
                 child: TitleLargeBlackBoldText(
                   text: title,
@@ -38,8 +57,8 @@ class CustomResponseWidget extends StatelessWidget {
               ),
               // sub title
               Padding(
-                padding: PaddingSizedsUtility.vertical(
-                  PaddingSizedsUtility.normalPaddingValue,
+                padding: BaseUtility.vertical(
+                  BaseUtility.paddingNormalValue,
                 ),
                 child: BodyMediumBlackText(
                   text: subTitle,
@@ -67,8 +86,8 @@ class CustomLoadingResponseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: PaddingSizedsUtility.all(
-        PaddingSizedsUtility.normalPaddingValue,
+      padding: BaseUtility.all(
+        BaseUtility.paddingNormalValue,
       ),
       child: Center(
         child: Column(
@@ -81,8 +100,8 @@ class CustomLoadingResponseWidget extends StatelessWidget {
             ),
             // title
             Padding(
-              padding: PaddingSizedsUtility.top(
-                PaddingSizedsUtility.hightPaddingValue,
+              padding: BaseUtility.top(
+                BaseUtility.paddingHightValue,
               ),
               child: BodyMediumBlackBoldText(
                 text: title,
@@ -91,8 +110,8 @@ class CustomLoadingResponseWidget extends StatelessWidget {
             ),
             // sub title
             Padding(
-              padding: PaddingSizedsUtility.vertical(
-                PaddingSizedsUtility.smallPaddingValue,
+              padding: BaseUtility.vertical(
+                BaseUtility.paddingSmallValue,
               ),
               child: BodyMediumBlackText(
                 text: subTitle,
