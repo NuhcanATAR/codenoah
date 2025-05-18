@@ -120,7 +120,24 @@ Use for text pasting.
     direction: SlideDirection.leftToRight,
   );
 },
+
+// Switches to the specified route (page).
+ CodeNoahNavigatorRouter.pushNamed(
+  context,
+  '/login',
+);
+
+// Removes all previous pages and switches to the specified route.
+// Pressing the Back button does not return to previous pages.
+CodeNoahNavigatorRouter.pushNamedAndRemoveUntil(
+  context,
+  '/login',
+);
+
 ```
+
+
+
 <details>
 
   
@@ -239,6 +256,28 @@ CustomButtonWidget(
 - `ButtonTypes.borderPrimaryColorButton` 
 - `ButtonTypes.borderErrorColorButton` 
 </details>
+
+
+### DropdownButton Field Usage
+
+```dart
+DropDownSingleListMenuWidget(
+  selectStatus: '', // select value
+  onStatusChanged: (val) {}, // select change
+  text: 'Select', // title
+  list: const [ // items
+    'Flutter',
+    'Kotlin',
+    'Node.js',
+  ],
+  statusValidator: true, // validator control
+  languageOptions: LanguageOptions.turkish, // validator error language
+  menuIcon: const Icon( // menu ıcon
+    Icons.arrow_downward,
+  ),
+),
+```
+
 
 ### Email Field Usage
 

@@ -27,6 +27,22 @@ class _RouterViewState extends RouterViewModel {
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
+              CustomButtonWidget(
+                width: ViewSizeValueModelExtension(context).maxWidth(context),
+                text: 'From Left to Right',
+                func: () {
+                  CodeNoahNavigatorRouter.pushNamed(
+                    context,
+                    '/login',
+                  );
+
+                  CodeNoahNavigatorRouter.pushNamedAndRemoveUntil(
+                    context,
+                    '/login',
+                  );
+                },
+                btnStatus: ButtonTypes.primaryColorButton,
+              ),
               // from left to right
               CustomButtonWidget(
                 width: ViewSizeValueModelExtension(context).maxWidth(context),

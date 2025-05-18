@@ -23,6 +23,22 @@ class _FieldViewState extends FieldViewModel {
         child: ListView(
           shrinkWrap: true,
           children: <Widget>[
+            // dropdown field
+            DropDownSingleListMenuWidget(
+              selectStatus: '',
+              onStatusChanged: (val) {},
+              text: 'Select',
+              list: const [
+                'Flutter',
+                'Kotlin',
+                'Node.js',
+              ],
+              statusValidator: true,
+              languageOptions: LanguageOptions.turkish,
+              menuIcon: const Icon(
+                Icons.arrow_downward,
+              ),
+            ),
             // normal field
             CustomNormalTextFieldWidget(
               controller: normalEditingController,

@@ -13,3 +13,10 @@
 * Added detailed example usages about the usages generally edited in example.
 * Errors in font usage have been fixed.
 * General bugs and improvements have been made in the code.
+
+
+## [3.1.0] - 18.05.2025
+
+* Documentation update has been made for pub.dev.
+* New routing features have been added to the routing feature.
+* DropdDown Menu widget usage feature has been added.

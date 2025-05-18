@@ -82,4 +82,28 @@ class CodeNoahNavigatorRouter {
       },
     );
   }
+
+  // Switches to the specified route (page).
+  static void pushNamed(
+    BuildContext context,
+    String routeName, {
+    Object? arguments,
+  }) {
+    Navigator.pushNamed(context, routeName, arguments: arguments);
+  }
+
+  // Removes all previous pages and switches to the specified route.
+  // Pressing the Back button does not return to previous pages.
+  static void pushNamedAndRemoveUntil(
+    BuildContext context,
+    String routeName, {
+    Object? arguments,
+  }) {
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      routeName,
+      (Route<dynamic> route) => false,
+      arguments: arguments,
+    );
+  }
 }

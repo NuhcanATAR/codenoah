@@ -49,6 +49,8 @@ export 'src/util/util.dart';
 export 'src/validator/validator.dart';
 // button features
 export 'src/widget/button/button_widget.dart';
+// drop down menu field
+export 'src/widget/field/drop_down_menu_field.dart';
 // email text form field properties
 export 'src/widget/field/email_field_widget.dart';
 // normal text form field properties

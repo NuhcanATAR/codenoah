@@ -25,6 +25,22 @@ class _FormViewState extends FormViewModel {
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
+              // drop down menu
+              DropDownSingleListMenuWidget(
+                selectStatus: '',
+                onStatusChanged: (val) {},
+                text: 'Select',
+                list: const [
+                  'Flutter',
+                  'Kotlin',
+                  'Node.js',
+                ],
+                statusValidator: true,
+                languageOptions: LanguageOptions.turkish,
+                menuIcon: const Icon(
+                  Icons.arrow_downward,
+                ),
+              ),
               // name surname
               Row(
                 children: <Widget>[
